@@ -15,6 +15,13 @@ def recreate_db():
     db.create_all()
     db.session.commit()
 
+@cli.command("seed_db")
+def seed_db():
+    """Seeds the database"""
+    db.session.add(User(username='michael', email='hermanmu@gmail.org'))
+    db.session.add(User(username='michaelherman', email='michael@herman.org'))
+    db.session.commit()
+
 @cli.command()
 def test():
     """Runs the tests without code coverage"""
