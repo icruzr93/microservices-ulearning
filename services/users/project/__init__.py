@@ -5,8 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-def create_app(script_info=None):
 
+def create_app(script_info=None):
     # instantiate the app
     app = Flask(__name__)
 
@@ -17,7 +17,7 @@ def create_app(script_info=None):
     # set up extensions
     db.init_app(app)
 
-    #register blueprints
+    # register blueprints
     from project.api.users import users_blueprint
     app.register_blueprint(users_blueprint)
 
@@ -26,4 +26,3 @@ def create_app(script_info=None):
         return {'app': app, 'db': db}
 
     return app
-    
