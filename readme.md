@@ -13,6 +13,10 @@ docker-compose -f docker-compose.yml exec users python manage.py recreate_db
 ```
 
 ```sh
+docker-compose exec users flake8 project
+```
+
+```sh
 docker-compose -f docker-compose.yml exec users python manage.py seed_db
 ```
 
