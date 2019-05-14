@@ -27,3 +27,7 @@ docker-compose -f docker-compose.yml exec users python manage.py test
 ```sh
 docker-compose -f docker-compose.yml exec users-db psql -U postgres
 ```
+
+```sh
+docker-compose logs -f
+```
