@@ -21,8 +21,10 @@ services:
     build:
       context: ./services/users/project/db
       dockerfile: Dockerfile
-    ports:
-      - 5432:5432
+    #ports:
+    #- 5432:5432
+    expose:
+      - 5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -33,7 +35,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - "./services/client:/usr/src/app"
-      - "./usr/src/app/node_modules"
+      - "/usr/src/app/node_modules"
     ports:
       - 3007:3000
     environment:
