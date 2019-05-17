@@ -2,7 +2,7 @@
 
 # Microservices with Docker, Flask, and React
 
-[![Build Status](https://travis-ci.org/icruzr93/microservices-ulearning.svg?branch=master)](https://travis-ci.org/icruzr93/microservices-ulearning)
+[![Build Status](https://travis-ci.com/icruzr93/microservices-ulearning.svg?token=yymzpcbz5E6PUXJj9jfT&branch=master)](https://travis-ci.com/icruzr93/microservices-ulearning)
 
 ```sh
 docker-compose -f docker-compose.yml up -d --build
