@@ -21,13 +21,29 @@ docker-compose -f docker-compose.yml exec users python manage.py seed_db
 ```
 
 ```sh
+docker-compose logs -f
+```
+
+### Test And Linting
+
+```sh
 docker-compose -f docker-compose.yml exec users python manage.py test
 ```
 
 ```sh
-docker-compose -f docker-compose.yml exec users-db psql -U postgres
+docker-compose -f docker-compose.yml exec users flake8 project
+```
+
+### Database Commands
+
+```sh
+docker-compose exec users-db psql -U postgres
 ```
 
 ```sh
-docker-compose logs -f
+docker-compose exec users python manage.py db migrate
+```
+
+```sh
+docker-compose exec users python manage.py db upgrade
 ```
