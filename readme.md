@@ -47,3 +47,9 @@ docker-compose exec users python manage.py db migrate
 ```sh
 docker-compose exec users python manage.py db upgrade
 ```
+
+```
+# \c users_dev
+# \d+ users
+# \dt
+```
