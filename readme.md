@@ -24,7 +24,11 @@ docker-compose -f docker-compose.yml exec users python manage.py seed_db
 docker-compose logs -f
 ```
 
-### Test And Linting
+### Cov, Linting and Test
+
+```sh
+docker-compose exec users python manage.py cov
+```
 
 ```sh
 docker-compose -f docker-compose.yml exec users python manage.py test
