@@ -56,14 +56,13 @@ def login_user():
     post_data = request.get_json()
     response_object = {
         'status': 'fail',
-        'message': 'Invalid payload'
+        'message': 'Invalid payload.'
     }
     if not post_data:
         return jsonify(response_object), 400
     email = post_data.get('email')
     password = post_data.get('password')
     try:
-        # fetch the user data
         user = User.query.filter_by(email=email).first()
         if user and bcrypt.check_password_hash(user.password, password):
             auth_token = user.encode_auth_token(user.id)
