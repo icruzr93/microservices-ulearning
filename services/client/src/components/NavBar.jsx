@@ -11,7 +11,6 @@ const NavBar = props => (
     <section className="container">
       <div className="navbar-brand">
         <strong className="navbar-item">{props.title}</strong>
-        {/* new */}
         <span
           className="nav-toggle navbar-burger"
           onClick={() => {
@@ -34,24 +33,35 @@ const NavBar = props => (
           <Link to="/about" className="navbar-item">
             About
           </Link>
-          <Link to="/status" className="navbar-item">
-            User Status
-          </Link>
+          {/* new */}
+          {props.isAuthenticated && (
+            <Link to="/status" className="navbar-item">
+              User Status
+            </Link>
+          )}
         </div>
         <div className="navbar-end">
-          <Link to="/register" className="navbar-item">
-            Register
-          </Link>
-          <Link to="/login" className="navbar-item">
-            Log In
-          </Link>
-          <Link to="/logout" className="navbar-item">
-            Log Out
-          </Link>
+          {/* new */}
+          {!props.isAuthenticated && (
+            <Link to="/register" className="navbar-item">
+              Register
+            </Link>
+          )}
+          {/* new */}
+          {!props.isAuthenticated && (
+            <Link to="/login" className="navbar-item">
+              Log In
+            </Link>
+          )}
+          {/* new */}
+          {props.isAuthenticated && (
+            <Link to="/logout" className="navbar-item">
+              Log Out
+            </Link>
+          )}
         </div>
       </div>
     </section>
   </nav>
 );
-
 export default NavBar;
