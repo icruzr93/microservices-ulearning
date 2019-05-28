@@ -13,8 +13,8 @@ docker-compose exec users python manage.py test
 inspect $? users
 docker-compose exec users flake8 project
 inspect $? users-lint
-docker-compose exec client npm test --coverage
-inspect $? client
+# docker-compose exec client npm test --coverage
+# inspect $? client
 docker-compose down
 
 # return proper code
