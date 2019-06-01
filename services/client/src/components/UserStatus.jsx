@@ -37,9 +37,7 @@ class UserStatus extends Component {
           admin: String(res.data.data.admin)
         });
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(error => { console.log(error); });
   }
   render() {
     if (!this.props.isAuthenticated) {

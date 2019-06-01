@@ -30,8 +30,12 @@ class App extends Component {
     this.handleFormChange = this.handleFormChange.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
   }
+
   componentDidMount() {
     this.getUsers();
+    if (window.localStorage.getItem('authToken')) {
+      this.setState({ isAuthenticated: true });
+    };
   }
 
   clearFormState() {
@@ -61,9 +65,7 @@ class App extends Component {
         this.setState({ isAuthenticated: true });
         this.getUsers();
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => { console.log(err); });
   }
 
   handleFormChange(event) {
@@ -124,10 +126,12 @@ class App extends Component {
               <div className="column is-half">
                 <br />
                 <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    render={() => <UsersList users={this.state.users} />}
+                  <Route exact path="/"
+                    render={() =>
+                      <UsersList
+                        users={this.state.users}
+                      />
+                    }
                   />
                   <Route exact path="/about" component={About} />
                   <Route
@@ -139,6 +143,7 @@ class App extends Component {
                         formData={this.state.formData}
                         handleUserFormSubmit={this.handleUserFormSubmit}
                         handleFormChange={this.handleFormChange}
+                        isAuthenticated={this.state.isAuthenticated}
                       />
                     )}
                   />
@@ -151,6 +156,7 @@ class App extends Component {
                         formData={this.state.formData}
                         handleUserFormSubmit={this.handleUserFormSubmit}
                         handleFormChange={this.handleFormChange}
+                        isAuthenticated={this.state.isAuthenticated}
                       />
                     )}
                   />
@@ -164,15 +170,11 @@ class App extends Component {
                       />
                     )}
                   />
-                  <Route
-                    exact
-                    path="/status"
-                    render={() => (
-                      <UserStatus
-                        isAuthenticated={this.state.isAuthenticated}
-                      />
-                    )}
-                  />
+                  <Route exact path="/status" render={() => (
+                    <UserStatus
+                      isAuthenticated={this.state.isAuthenticated}
+                    />
+                  )} />
                 </Switch>
               </div>
             </div>
