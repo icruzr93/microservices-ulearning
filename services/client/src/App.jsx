@@ -126,50 +126,36 @@ class App extends Component {
               <div className="column is-half">
                 <br />
                 <Switch>
-                  <Route exact path="/"
-                    render={() =>
-                      <UsersList
-                        users={this.state.users}
-                      />
-                    }
-                  />
+                  <Route exact path="/" render={() =>
+                    <UsersList
+                      users={this.state.users}
+                    />
+                  } />
                   <Route exact path="/about" component={About} />
-                  <Route
-                    exact
-                    path="/register"
-                    render={() => (
-                      <Form
-                        formType={"Register"}
-                        formData={this.state.formData}
-                        handleUserFormSubmit={this.handleUserFormSubmit}
-                        handleFormChange={this.handleFormChange}
-                        isAuthenticated={this.state.isAuthenticated}
-                      />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path="/login"
-                    render={() => (
-                      <Form
-                        formType={"Login"}
-                        formData={this.state.formData}
-                        handleUserFormSubmit={this.handleUserFormSubmit}
-                        handleFormChange={this.handleFormChange}
-                        isAuthenticated={this.state.isAuthenticated}
-                      />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path="/logout"
-                    render={() => (
-                      <Logout
-                        logoutUser={this.logoutUser}
-                        isAuthenticated={this.state.isAuthenticated}
-                      />
-                    )}
-                  />
+                  <Route exact path="/register" render={() => (
+                    <Form
+                      formType={"Register"}
+                      formData={this.state.formData}
+                      handleUserFormSubmit={this.handleUserFormSubmit}
+                      handleFormChange={this.handleFormChange}
+                      isAuthenticated={this.state.isAuthenticated}
+                    />
+                  )} />
+                  <Route exact path="/login" render={() => (
+                    <Form
+                      formType={"Login"}
+                      formData={this.state.formData}
+                      handleUserFormSubmit={this.handleUserFormSubmit}
+                      handleFormChange={this.handleFormChange}
+                      isAuthenticated={this.state.isAuthenticated}
+                    />
+                  )} />
+                  <Route exact path="/logout" render={() => (
+                    <Logout
+                      logoutUser={this.logoutUser}
+                      isAuthenticated={this.state.isAuthenticated}
+                    />
+                  )} />
                   <Route exact path="/status" render={() => (
                     <UserStatus
                       isAuthenticated={this.state.isAuthenticated}

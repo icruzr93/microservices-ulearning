@@ -14,7 +14,7 @@ class UserStatus extends Component {
     };
   }
   componentDidMount() {
-    if (this.props.isAuthenticated) {
+    if (window.localStorage.getItem('authToken')) {
       this.getUserStatus();
     }
   }
