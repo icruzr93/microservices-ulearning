@@ -38,6 +38,12 @@ docker-compose -f docker-compose.yml exec users python manage.py test
 docker-compose -f docker-compose.yml exec users flake8 project
 ```
 
+### Cypress Commands
+
+```sh
+./node_modules/.bin/cypress open --config baseUrl=http://localhost
+```
+
 ### Database Commands
 
 ```sh
