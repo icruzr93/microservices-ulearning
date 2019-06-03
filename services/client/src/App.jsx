@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import UsersList from "./components/UsersList";
 import UserStatus from "./components/UserStatus";
 import About from "./components/About";
-import Form from "./components/Form";
+import Form from "./components/forms/Form";
 
 class App extends Component {
   constructor() {
@@ -34,7 +34,7 @@ class App extends Component {
       .then(res => {
         this.setState({ users: res.data.data.users });
       })
-      .catch(err => {});
+      .catch(err => { });
   }
 
   logoutUser() {
