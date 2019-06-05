@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import UserStatus from "./components/UserStatus";
 import About from "./components/About";
 import Form from "./components/forms/Form";
+import Message from './components/Message';
 
 class App extends Component {
   constructor() {
@@ -15,10 +16,14 @@ class App extends Component {
     this.state = {
       users: [],
       title: "TestDriven.io",
-      isAuthenticated: false
+      isAuthenticated: false,
+      messageName: null,
+      messageType: null,
     };
     this.logoutUser = this.logoutUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
+    this.createMessage = this.createMessage.bind(this);
+    this.removeMessage = this.removeMessage.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +42,23 @@ class App extends Component {
       .catch(err => { });
   }
 
+  removeMessage() {
+    this.setState({
+      messageName: null,
+      messageType: null
+    });
+  };
+
+  createMessage(name = 'Sanity Check', type = 'success') {
+    this.setState({
+      messageName: name,
+      messageType: type
+    });
+    setTimeout(() => {
+      this.removeMessage();
+    }, 3000);
+  };
+
   logoutUser() {
     window.localStorage.clear();
     this.setState({ isAuthenticated: false });
@@ -46,6 +68,7 @@ class App extends Component {
     window.localStorage.setItem("authToken", token);
     this.setState({ isAuthenticated: true });
     this.getUsers();
+    this.createMessage('Welcome!', 'success');
   }
 
   render() {
@@ -57,6 +80,13 @@ class App extends Component {
         />
         <section className="section">
           <div className="container">
+            {this.state.messageName && this.state.messageType &&
+              <Message
+                messageName={this.state.messageName}
+                messageType={this.state.messageType}
+                removeMessage={this.removeMessage}
+              />
+            }
             <div className="columns">
               <div className="column is-half">
                 <br />
@@ -67,28 +97,22 @@ class App extends Component {
                     render={() => <UsersList users={this.state.users} />}
                   />
                   <Route exact path="/about" component={About} />
-                  <Route
-                    exact
-                    path="/register"
-                    render={() => (
-                      <Form
-                        formType={"Register"}
-                        isAuthenticated={this.state.isAuthenticated}
-                        loginUser={this.loginUser}
-                      />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path="/login"
-                    render={() => (
-                      <Form
-                        formType={"Login"}
-                        isAuthenticated={this.state.isAuthenticated}
-                        loginUser={this.loginUser}
-                      />
-                    )}
-                  />
+                  <Route exact path="/register" render={() => (
+                    <Form
+                      formType={"Register"}
+                      isAuthenticated={this.state.isAuthenticated}
+                      loginUser={this.loginUser}
+                      createMessage={this.createMessage}
+                    />
+                  )} />
+                  <Route exact path="/login" render={() => (
+                    <Form
+                      formType={"Login"}
+                      isAuthenticated={this.state.isAuthenticated}
+                      loginUser={this.loginUser}
+                      createMessage={this.createMessage}
+                    />
+                  )} />
                   <Route
                     exact
                     path="/logout"
