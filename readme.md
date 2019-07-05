@@ -36,18 +36,21 @@ $ docker-compose logs -f
 
 # Test Script
 
-$ sh test.sh server
-$ sh test.sh client
-$ sh test.sh e2e
-
+```sh
+sh test.sh server
+sh test.sh client
+sh test.sh e2e
+```
 
 ### Database Commands
 
-$ docker-compose exec users-db psql -U postgres
-$ docker-compose exec users python manage.py db migrate
-$ docker-compose exec users python manage.py db upgrade
-
+```sh
+docker-compose exec users-db psql -U postgres
+docker-compose exec users python manage.py db migrate
+docker-compose exec users python manage.py db upgrade
 ```
+
+```sh
 # \c users_dev
 # \d+ users
 # \dt
