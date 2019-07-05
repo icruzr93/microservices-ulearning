@@ -3,7 +3,7 @@ env=$1
 fails=""
 
 inspect() {
-    if [ $1 -ne 0]; then
+    if [ $1 -ne 0 ]; then
         fails="${fails} $2"
     fi
 }
@@ -14,7 +14,7 @@ dev() {
     inspect $? users
     docker-compose exec users flake8 project
     inspect $? users-lint
-    docker-compose exec client npm test -- --coverage
+    docker-compose exec client npm run coverage
     inspect $? client
     docker-compose down
 }
