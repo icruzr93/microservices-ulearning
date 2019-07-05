@@ -1,5 +1,6 @@
 if [ -z "$TRAVIS_PULL_REQUEST" ] || [ "$TRAVIS_PULL_REQUEST" == "false" ]
 then
+
     if [[ "$TRAVIS_BRANCH" == "staging" ]]; then
         export DOCKER_ENV=stage
     elif [[ "$TRAVIS_BRANCH" == "production" ]]; then
