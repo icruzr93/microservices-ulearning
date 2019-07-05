@@ -4,15 +4,21 @@
 
 # Environment Variables
 
-## Development
+## Development (Temporary)
+```sh
 export REACT_APP_USERS_SERVICE_URL=http://localhost
+```
 
-## Staging
+## Staging (Temporary)
+```sh
 export REACT_APP_USERS_SERVICE_URL=http://DOCKER_MACHINE_STAGING_IP
+```
 
-## Production
+## Production (Temporary)
+```sh
 $ export REACT_APP_USERS_SERVICE_URL=http://DOCKER_MACHINE_PROD_IP
 $ export SECRET_KEY=SOMETHING_SUPER_SECRET
+```
 
 # Build and Run Images
 
