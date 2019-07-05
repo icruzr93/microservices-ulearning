@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ -z "$TRAVIS_PULL_REQUEST" ] || [ "$TRAVIS_PULL_REQUEST" == "false" ]
 then
 
