@@ -2,42 +2,43 @@ version: 2
 
 jobs:
   build:
-    machine: true
+    docker:
+      - image: circleci:docker
     steps:
     - run:
       name: Set Environment Variables
       command: |
-        echo 'export DOCKER_COMPOSE_VERSION=1.23.2' >> $BASH_ENV
-        echo 'export COMMIT=${CIRCLE_BUILD_NUM::8}' >> $BASH_ENV
-        echo 'export MAIN_REPO=https://github.com/icruzr93/microservices-ulearning.git' >> $BASH_ENV
-        echo 'export USERS=test-driven-users' >> $BASH_ENV
-        echo 'export USERS_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/users' >> $BASH_ENV
-        echo 'export USERS_DB=test-driven-users_db' >> $BASH_ENV
-        echo 'export USERS_DB_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/users/project/db' >> $BASH_ENV
-        echo 'export CLIENT=test-driven-client' >> $BASH_ENV 
-        echo 'export CLIENT_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/client' >> $BASH_ENV 
-        echo 'export SWAGGER=test-driven-swagger' >> $BASH_ENV 
-        echo 'export SWAGGER_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/swagger' >> $BASH_ENV 
-        echo 'export SECRET_KEY=my_precious' >> $BASH_ENV 
+        echo 'export DOCKER_COMPOSE_VERSION=1.23.2' >> $BASH_ENV 
+        echo 'export COMMIT=${CIRCLE_BUILD_NUM::8}' >> $BASH_ENV 
+        echo 'export MAIN_REPO=https://github.com/icruzr93/microservices-ulearning.git' >> $BASH_ENV 
+        echo 'export USERS=test-driven-users' >> $BASH_ENV 
+        echo 'export USERS_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/users' >> $BASH_ENV 
+        echo 'export USERS_DB=test-driven-users_db' >> $BASH_ENV 
+        echo 'export USERS_DB_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/users/project/db' >> $BASH_ENV 
+        echo 'export CLIENT=test-driven-client' >> $BASH_ENV  
+        echo 'export CLIENT_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/client' >> $BASH_ENV  
+        echo 'export SWAGGER=test-driven-swagger' >> $BASH_ENV  
+        echo 'export SWAGGER_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/swagger' >> $BASH_ENV  
+        echo 'export SECRET_KEY=my_precious' >> $BASH_ENV  
     - run:
-      name: "What branch am I on?"
-      command: echo ${CIRCLE_BRANCH}
+        name: "What branch am I on?"
+        command: echo ${CIRCLE_BRANCH}
     - run:
-      name: Install Docker Compose
-      command: |
-        sudo rm /usr/local/bin/docker-compose
-        curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-        chmod +x ~/docker-compose
-        sudo mv ~/docker-compose /usr/local/bin/docker-compose
+        name: Install Docker Compose
+        command: |
+          sudo rm /usr/local/bin/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+          chmod +x ~/docker-compose
+          sudo mv ~/docker-compose /usr/local/bin/docker-compose
     - run:
-      name: Configure Environment
-      command: |
-        export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
-        npm install
+        name: Configure Environment
+        command: |
+          export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
+          npm install
     - run:
-      name: Run CI Tests
-      command: |
-        test-ci.sh 
+        name: Run CI Tests
+        command: |
+          test-ci.sh 
     - run:
-      name: Next steps to customize your pipeline
-      command: next_steps.sh
+        name: Next steps to customize your pipeline
+        command: next_steps.sh
