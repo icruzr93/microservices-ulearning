@@ -36,8 +36,4 @@ jobs:
           npm install
     - run:
         name: Run CI Tests
-        command: |
-          test-ci.sh 
-    - run:
-        name: Next steps to customize your pipeline
-        command: next_steps.sh
+        command: ./test-ci.sh 
