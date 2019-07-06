@@ -1,15 +1,42 @@
-# Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
-version: 2.1
+version: 2
 
-# Use a package of configuration called an orb, see https://circleci.com/docs/2.0/orb-intro/
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.3.1
-
-# Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
-workflows:
-  # Name the workflow "Welcome"
-  Welcome:
-    # Run the welcome/run job in its own container
-    jobs:
-      - welcome/run
+jobs:
+  build:
+    steps:
+    - run:
+      name: Set Environment Variables
+      command: |
+        echo 'export DOCKER_COMPOSE_VERSION=1.23.2' >> $BASH_ENV # Ready
+        echo 'export COMMIT=${CIRCLE_BUILD_NUM::8}' >> $BASH_ENV # Ready
+        echo 'export MAIN_REPO=https://github.com/icruzr93/microservices-ulearning.git' >> $BASH_ENV # Ready
+        echo 'export USERS=test-driven-users' >> $BASH_ENV # Ready
+        echo 'export USERS_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/users' >> $BASH_ENV # Ready
+        echo 'export USERS_DB=test-driven-users_db' >> $BASH_ENV # Ready
+        echo 'export USERS_DB_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/users/project/db' >> $BASH_ENV # Ready
+        echo 'export CLIENT=test-driven-client' >> $BASH_ENV  # Ready
+        echo 'export CLIENT_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/client' >> $BASH_ENV  # Ready
+        echo 'export SWAGGER=test-driven-swagger' >> $BASH_ENV  # Ready
+        echo 'export SWAGGER_REPO=${MAIN_REPO}#{CIRCLE_BRANCH}:services/swagger' >> $BASH_ENV  # Ready
+        echo 'export SECRET_KEY=my_precious' >> $BASH_ENV  # Ready
+    - run:
+      name: "What branch am I on?"
+      command: echo ${CIRCLE_BRANCH}
+    - run:
+      name: Install Docker Compose
+      command: |
+        sudo rm /usr/local/bin/docker-compose
+        curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+        chmod +x ~/docker-compose
+        sudo mv ~/docker-compose /usr/local/bin/docker-compose
+    - run:
+      name: Configure Environment
+      command: |
+        export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
+        npm install
+    - run:
+      name: Run CI Tests
+      command: |
+        test-ci.sh 
+    - run:
+      name: Next steps to customize your pipeline
+      command: next_steps.sh
