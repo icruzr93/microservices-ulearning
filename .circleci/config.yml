@@ -2,8 +2,7 @@ version: 2
 
 jobs:
   build:
-    docker:
-      - image: circleci:docker
+    machine: true
     steps:
     - run:
         name: Set Environment Variables
