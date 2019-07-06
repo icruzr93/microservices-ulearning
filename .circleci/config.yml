@@ -36,4 +36,4 @@ jobs:
           npm install
     - run:
         name: Run CI Tests
-        command: ./test-ci.sh
+        command: bash test-ci.sh
