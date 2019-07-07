@@ -33,8 +33,11 @@ jobs:
     - run:
         name: Configure Environment
         command: |
-          export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
+          echo 'export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1' >> $BASH_ENV 
           npm install
     - run:
         name: Run CI Tests
-        command: bash test-ci.sh
+        command: ./test-ci.sh
+    - run:
+        name: Push To ECR
+        command: ./docker-push.sh
