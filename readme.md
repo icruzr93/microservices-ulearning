@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.com/icruzr93/microservices-ulearning.svg?token=yymzpcbz5E6PUXJj9jfT&branch=master)](https://travis-ci.com/icruzr93/microservices-ulearning)
 
+
+[![CircleCI](https://circleci.com/gh/icruzr93/microservices-ulearning.svg?style=svg)](https://circleci.com/gh/icruzr93/microservices-ulearning)
+
 # Environment Variables
 
 ## Development (Temporary)
