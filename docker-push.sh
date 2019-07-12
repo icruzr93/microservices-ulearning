@@ -4,7 +4,7 @@ then
 
     if [[ "${CIRCLE_BRANCH}" == "staging" ]]; then
         export DOCKER_ENV=stage
-        export REACT_APP_USERS_SERVICE_URL="http://testdriven-staging-alb-2136645595.us-west-1.elb.amazonaws.com"
+        export REACT_APP_USERS_SERVICE_URL="http://testdriven-staging-alb-1882655614.us-west-1.elb.amazonaws.com"
     elif [[ "${CIRCLE_BRANCH}" == "production" ]]; then
         export DOCKER_ENV=prod
     fi
