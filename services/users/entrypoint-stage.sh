@@ -8,4 +8,7 @@ done
 
 echo "PostgreSQL started"
 
+echo "Creating Database"
+python manage.py recreate_db
+python manage.py seed_db
 gunicorn -b 0.0.0.0:5000 manage:app
