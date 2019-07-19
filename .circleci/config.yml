@@ -45,5 +45,5 @@ jobs:
         name: Deploy Staging
         command: ./docker-deploy-stage.sh
     - run:
-        name: Deploy Staging
+        name: Deploy Prod
         command: ./docker-deploy-prod.sh
