@@ -9,6 +9,7 @@ import UserStatus from "./components/UserStatus";
 import About from "./components/About";
 import Form from "./components/forms/Form";
 import Message from './components/Message';
+import Footer from './components/Footer';
 
 class App extends Component {
   constructor() {
@@ -91,11 +92,11 @@ class App extends Component {
               <div className="column is-half">
                 <br />
                 <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    render={() => <UsersList users={this.state.users} />}
-                  />
+                  <Route exact path='/all-users' render={() => (
+                    <UsersList
+                      users={this.state.users}
+                    />
+                  )} />
                   <Route exact path="/about" component={About} />
                   <Route exact path="/register" render={() => (
                     <Form
@@ -137,6 +138,7 @@ class App extends Component {
             </div>
           </div>
         </section>
+        <Footer />
       </div>
     );
   }
