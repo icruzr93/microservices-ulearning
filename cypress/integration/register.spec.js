@@ -15,26 +15,34 @@ describe("Register", () => {
       .get('.validation-list > .error').first().contains('Username must be greater than 5 characters.');
   });
 
-  it("should allow a user to register", () => {
+  it('should allow a user to register', () => {
     // register user
-
-    cy.visit("/register")
+    cy
+      .visit('/register')
       .get('input[name="username"]').type(username)
       .get('input[name="email"]').type(email)
       .get('input[name="password"]').type(password)
-      .get('input[type="submit"]').click();
-
+      .get('input[type="submit"]').click()
+  
     // assert user is redirected to '/'
-    // assert '/' is displayed properly
-    cy.contains("All Users");
-    cy.contains(username);
-    cy.get(".navbar-burger").click();
-    cy.get(".navbar-menu").within(() => {
+    cy.get('.notification.is-success').contains('Welcome!');
+    cy.get('.navbar-burger').click();
+    cy.contains('Users').click();
+    // assert '/all-users' is displayed properly
+    cy.get('.navbar-burger').click();
+    cy.location().should((loc) => { expect(loc.pathname).to.eq('/all-users') });
+    cy.contains('All Users');
+    cy
+      .get('table')
+      .find('tbody > tr').last()
+      .find('td').contains(username);
+    cy.get('.navbar-burger').click();
+    cy.get('.navbar-menu').within(() => {
       cy
-        .get(".navbar-item").contains("User Status")
-        .get(".navbar-item").contains("Log Out")
-        .get(".navbar-item").contains("Log In").should("not.be.visible")
-        .get(".navbar-item").contains("Register").should("not.be.visible");
+        .get('.navbar-item').contains('User Status')
+        .get('.navbar-item').contains('Log Out')
+        .get('.navbar-item').contains('Log In').should('not.be.visible')
+        .get('.navbar-item').contains('Register').should('not.be.visible');
     });
   });
 
