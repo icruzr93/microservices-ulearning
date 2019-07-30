@@ -30,30 +30,26 @@ const NavBar = props => (
           <Link to="/" className="navbar-item">
             Home
           </Link>
-          <Link to="/about" className="navbar-item">
-            About
-          </Link>
-          {/* new */}
+          <Link to="/about" className="navbar-item">About</Link>
+          <Link to="/all-users" className="navbar-item">Users</Link>
           {props.isAuthenticated && (
             <Link to="/status" className="navbar-item">
               User Status
             </Link>
           )}
+          <a href="/swagger" className="navbar-item">Swagger</a>
         </div>
         <div className="navbar-end">
-          {/* new */}
           {!props.isAuthenticated && (
             <Link to="/register" className="navbar-item">
               Register
             </Link>
           )}
-          {/* new */}
           {!props.isAuthenticated && (
             <Link to="/login" className="navbar-item">
               Log In
             </Link>
           )}
-          {/* new */}
           {props.isAuthenticated && (
             <Link to="/logout" className="navbar-item">
               Log Out
