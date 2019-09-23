@@ -1,5 +1,7 @@
 {
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.pythonPath": "/usr/local/opt/python/bin/python3.7"
+  "eslint.autoFixOnSave": false,
+  "editor.formatOnSave": false,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.pythonPath": "/usr/local/opt/python/bin/python3.7"
 }
