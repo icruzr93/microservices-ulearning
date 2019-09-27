@@ -6,6 +6,7 @@ then
     if [[ "${CIRCLE_BRANCH}" == "staging" ]]; then
         export DOCKER_ENV=stage
         export REACT_APP_USERS_SERVICE_URL="http://testdriven-staging-alb-1882655614.us-west-1.elb.amazonaws.com"
+        export REACT_APP_EXERCISES_SERVICE_URL="http://testdriven-staging-alb-1882655614.us-west-1.elb.amazonaws.com"
     elif [[ "${CIRCLE_BRANCH}" == "production" ]]; then
         export DOCKER_ENV=prod
         export REACT_APP_USERS_SERVICE_URL="http://testdriven-production-alb-1938185250.us-west-1.elb.amazonaws.com"
@@ -46,5 +47,15 @@ then
         docker build $SWAGGER_REPO -t $SWAGGER:$COMMIT -f Dockerfile-$DOCKER_ENV
         docker tag $SWAGGER:$COMMIT $REPO/$SWAGGER:$TAG
         docker push $REPO/$SWAGGER:$TAG
+
+        # exercises
+        docker build $EXERCISES_REPO -t $EXERCISES:$COMMIT -f Dockerfile-$DOCKER_ENV
+        docker tag $EXERCISES:$COMMIT $REPO/$EXERCISES:$TAG
+        docker push $REPO/$EXERCISES:$TAG
+
+        # exercises db
+        docker build $EXERCISES_DB_REPO -t $EXERCISES_DB:$COMMIT -f Dockerfile
+        docker tag $EXERCISES_DB:$COMMIT $REPO/$EXERCISES_DB:$TAG
+        docker push $REPO/$EXERCISES_DB:$TAG
     fi
 fi
