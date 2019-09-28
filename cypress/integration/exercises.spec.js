@@ -7,11 +7,10 @@ const password = 'greaterthanten';
 
 describe('Exercises', () => {
     it('should display the exercises correctly if a user is not logged in', () => {
-        cy
-            .visit('/')
-            .get('h1').contains('Exercises')
-            .get('.notification.is-warning').contains('Please log in to submit an exercise.')
-            .get('button').should('not.be.visible');
+        cy.visit('/')
+        cy.contains('h1', 'Exercises')
+        cy.contains('.notification.is-warning', 'Please log in to submit an exercise.')
+        cy.get('button').should('not.be.visible');
     });
 
     it('should allow a user to submit an exercise if logged in', () => {
@@ -29,16 +28,13 @@ describe('Exercises', () => {
             .wait('@createUser');
         
         // assert exercises are displayed correctly
-        cy
-            .get('h1').contains('Exercises')
-            .get('.notification.is-success').contains('Welcome!')
-            .get('.notification.is-danger').should('not.be.visible')
-            .get('button.button.is-primary').contains('Run Code');
+        cy.contains('h1','Exercises');
+        cy.contains('.notification.is-success', 'Welcome!');
+        cy.get('.notification.is-danger').should('not.be.visible');
+        cy.contains('button.button.is-primary', 'Run Code');
 
         // assert user can submit an exercise
-        cy
-            .get('button').contains('Run Code').click()
-            .wait(600)
-            .get('h5 > .grade-text').contains('Incorrect!');
+        cy.get('button').contains('Run Code').click().wait(900)
+        cy.contains('h5 > .grade-text', 'Incorrect!');
     });
 });
