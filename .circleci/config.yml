@@ -26,7 +26,7 @@ jobs:
             echo 'export SECRET_KEY=my_precious' >> $BASH_ENV
       - run:
           name: "What branch am I on?"
-          command: echo $${CIRCLE_BRANCH}
+          command: echo ${CIRCLE_BRANCH}
       - run:
           name: Install Docker Compose
           command: |
