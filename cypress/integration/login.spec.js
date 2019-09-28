@@ -52,11 +52,10 @@ describe("Login", () => {
     cy.get('.navbar-burger').click();
     cy.wait(300);
     cy.get('.navbar-menu').within(() => {
-      cy
-        .get('.navbar-item').contains('User Status')
-        .get('.navbar-item').contains('Log Out')
-        .get('.navbar-item').contains('Log In').should('not.be.visible')
-        .get('.navbar-item').contains('Register').should('not.be.visible');
+      cy.contains('.navbar-item', 'User Status')
+      cy.contains('.navbar-item', 'Log Out')
+      cy.contains('.navbar-item', 'Log In').should('not.be.visible')
+      cy.contains('.navbar-item', 'Register').should('not.be.visible');
     });
   
     // log a user out
@@ -67,11 +66,10 @@ describe("Login", () => {
     cy.get('p').contains('You are now logged out');
     cy.wait(300);
     cy.get('.navbar-menu').within(() => {
-      cy
-        .get('.navbar-item').contains('User Status').should('not.be.visible')
-        .get('.navbar-item').contains('Log Out').should('not.be.visible')
-        .get('.navbar-item').contains('Log In')
-        .get('.navbar-item').contains('Register');
+      cy.contains('.navbar-item', 'User Status').should('not.be.visible')
+      cy.contains('.navbar-item', 'Log Out').should('not.be.visible')
+      cy.contains('.navbar-item', 'Log In')
+      cy.contains('.navbar-item', 'Register');
     });
   });
 
@@ -87,11 +85,10 @@ describe("Login", () => {
     cy.contains('Log In');
     cy.get('.navbar-burger').click();
     cy.get('.navbar-menu').within(() => {
-      cy
-        .get('.navbar-item').contains('User Status').should('not.be.visible')
-        .get('.navbar-item').contains('Log Out').should('not.be.visible')
-        .get('.navbar-item').contains('Log In')
-        .get('.navbar-item').contains('Register');
+      cy.contains('.navbar-item', 'User Status').should('not.be.visible');
+      cy.contains('.navbar-item', 'Log Out').should('not.be.visible');
+      cy.contains('.navbar-item', 'Log In');
+      cy.contains('.navbar-item', 'Register');
     });
     cy
       .get('.notification.is-success').should('not.be.visible')
@@ -109,15 +106,13 @@ describe("Login", () => {
     cy.contains('Log In');
     cy.get('.navbar-burger').click();
     cy.get('.navbar-menu').within(() => {
-      cy
-        .get('.navbar-item').contains('User Status').should('not.be.visible')
-        .get('.navbar-item').contains('Log Out').should('not.be.visible')
-        .get('.navbar-item').contains('Log In')
-        .get('.navbar-item').contains('Register');
+      cy.contains('.navbar-item', 'User Status').should('not.be.visible');
+      cy.contains('.navbar-item', 'Log Out').should('not.be.visible');
+      cy.contains('.navbar-item', 'Log In');
+      cy.contains('.navbar-item', 'Register');
     });
-    cy
-      .get('.notification.is-success').should('not.be.visible')
-      .get('.notification.is-danger').contains('User does not exist.')
+    cy.get('.notification.is-success').should('not.be.visible')
+    cy.contains('.notification.is-danger', 'User does not exist.')
 
   })
 });
