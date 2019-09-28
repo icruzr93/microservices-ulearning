@@ -22,7 +22,7 @@ jobs:
             echo 'export EXERCISES=test-driven-exercises' >> $BASH_ENV  
             echo 'export EXERCISES_REPO=${MAIN_REPO}#${CIRCLE_BRANCH}:services/exercises' >> $BASH_ENV  
             echo 'export EXERCISES_DB=test-driven-exercises_db' >> $BASH_ENV  
-            echo 'export EXERCISES_DB=${MAIN_REPO}#${CIRCLE_BRANCH}:services/exercises/project/db' >> $BASH_ENV  
+            echo 'export EXERCISES_DB_REPO=${MAIN_REPO}#${CIRCLE_BRANCH}:services/exercises/project/db' >> $BASH_ENV  
             echo 'export SECRET_KEY=my_precious' >> $BASH_ENV
       - run:
           name: "What branch am I on?"
