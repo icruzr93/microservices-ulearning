@@ -41,6 +41,8 @@ jobs:
             echo 'export REACT_APP_EXERCISES_SERVICE_URL=http://127.0.0.1' >> $BASH_ENV 
             echo 'export REACT_APP_API_GATEWAY_URL=https://kdsh7wu1w2.execute-api.us-west-1.amazonaws.com/v1/execute' >> $BASH_ENV 
             echo 'export LOAD_BALANCER_STAGE_DNS_NAME=http://testdriven-staging-alb-1882655614.us-west-1.elb.amazonaws.com' >> $BASH_ENV 
+            if [[ "$CIRCLE_BRANCH" == "staging" ]]; then echo 'export LOAD_BALANCER_DNS_NAME=http://LOAD_BALANCER_STAGE_DNS_NAME' >> $BASH_ENV fi
+            if [[ "$CIRCLE_BRANCH" == "production" ]]; then echo 'export LOAD_BALANCER_DNS_NAME=http://LOAD_BALANCER_PROD_DNS_NAME' >> $BASH_ENV  fi
             npm install
       - run:
           name: Run CI Tests
